@@ -9,11 +9,14 @@ function LoginDirective(UserService) {
       user: '='
     },
     link: (scope, element) => {
+
+      scope.user = {
+        hasAccount : true
+      };
+
       scope.logIn = function() {
-        console.log(scope);
-        console.log(scope.user.email);
-    //    if(vm.user.email)
-        let result = UserService.login(scope.user.email, scope.user.password).promise
+        console.log("LogIn");
+        let result = UserService.logIn(scope.user.email, scope.user.password).promise
           .then(function (response) {
             console.log(response);
             scope.errorMessage = null;
@@ -23,6 +26,19 @@ function LoginDirective(UserService) {
             scope.errorMessage = "The username or password is incorrect.";
           });
       };
+
+      scope.signUp = function() {
+        console.log("SignUp");
+        let result = UserService.signUp(scope.user.email, scope.user.password).promise
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+            scope.errorMessage = "There was an error creating your account.";
+          });
+      };
+
     }
   };
 }

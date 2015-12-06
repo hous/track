@@ -1,11 +1,31 @@
 <div class="login-directive">
-  <h3>login form</h3>
   <div id="login-form" ng-show="!isLoggedIn">
+    <h3>Sign In / Sign Up</h3>
     <p class="error" ng-show="errorMessage">{{ errorMessage }}</p>
-    <form ng-submit="logIn()">
-      <input type="email" ng-model="user.email" placeholder="email address" required />
-      <input type="password" ng-model="user.password" placeholder="password" required />
-      <button type="submit">Log In / Sign Up</button>
+    <form ng-submit="user.hasAccount ? logIn() : signUp()">
+      <div>
+        <h4>Email Address:</h4>
+        <input type="email" ng-model="user.email" placeholder="email address" required />
+      </div>
+      <div>
+        <h4>Do you have an account already?</h4>
+        <ul>
+          <li>
+            <input type="radio" name="hasAccount" ng-value="false" ng-model="user.hasAccount" />
+            <span>No, I'm new.</span>
+          </li>
+          <li>
+            <input type="radio" name="hasAccount" ng-value="true" ng-model="user.hasAccount" />
+            <span>Yes, I do.</span>
+          </li>
+          <li>
+            <input type="password" ng-model="user.password" placeholder="Password" required />
+            <input ng-show="!user.hasAccount" type="password" ng-model="user.passwordConfirm" match="user.password" placeholder="Confirm Password" required />
+          </li>
+        </ul>
+      </div>
+      <button type="submit" ng-show="user.hasAccount">Log In</button>
+      <button type="submit" ng-show="!user.hasAccount">Sign Up</button>
     </form>
   </div>
 </div>

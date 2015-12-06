@@ -12,10 +12,29 @@ function UserService($q) {
   /**
    * Log in a user.
    */
-  service.login = function(username, password) {
+  service.logIn = function(email, password) {
     var promise = $q.defer();
 
-    Parse.User.logIn(username, password).then( function(response){
+    Parse.User.logIn(email, password).then( function(response){
+      promise.resolve(response);
+    }, function(response){
+      promise.reject(response);
+    });
+
+    return promise;
+  };
+
+  /**
+   * Sign up a user.
+   */
+  service.signUp = function(email, password) {
+    var promise = $q.defer(),
+      user = new Parse.User();
+
+    user.set("username", email);
+    user.set("password", password);
+
+    user.signUp(null).then( function(response){
       promise.resolve(response);
     }, function(response){
       promise.reject(response);

@@ -1,17 +1,18 @@
 'use strict';
 
-function LoginDirective(UserService) {
-  console.log('LoginDirective');
+function UserStateDirective(UserService, $rootScope) {
   return {
     restrict: 'EA',
-    templateUrl: 'directives/login.html',
-    scope: {
-      user: '='
-    },
+    templateUrl: 'directives/userState.html',
     link: (scope, element) => {
 
-      scope.user = {
-        hasAccount : true
+
+      function refreshUser() {
+        scope.isLoggedIn = UserService.get();
+
+        if (scope.isLoggedIn){
+          scope.username = UserService.get().getUsername();
+        }
       };
 
       scope.logIn = function() {
@@ -20,6 +21,8 @@ function LoginDirective(UserService) {
           .then(function (response) {
             console.log(response);
             scope.errorMessage = null;
+            $rootScope.$broadcast('user-logged-in');
+            refreshUser();
           })
           .catch(function (error) {
             console.log(error);
@@ -32,6 +35,9 @@ function LoginDirective(UserService) {
         let result = UserService.signUp(scope.user.email, scope.user.password).promise
           .then(function (response) {
             console.log(response);
+            scope.errorMessage = null;
+            $rootScope.$broadcast('user-logged-in');
+            refreshUser();
           })
           .catch(function (error) {
             console.log(error);
@@ -39,11 +45,13 @@ function LoginDirective(UserService) {
           });
       };
 
+      refreshUser();
+
     }
   };
 }
 
 export default {
-  name: 'loginDirective',
-  fn: LoginDirective
+  name: 'userStateDirective',
+  fn: UserStateDirective
 };

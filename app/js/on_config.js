@@ -11,6 +11,12 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     templateUrl: 'landing.html',
     title: 'Landing'
   })
+  .state('Login', {
+    url: '/login',
+    controller: 'LoginCtrl as page',
+    templateUrl: 'login.html',
+    title: 'Login'
+  })
   .state('Tracks', {
     url: '/tracks',
     controller: 'TracksCtrl as page',

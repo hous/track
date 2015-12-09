@@ -1,6 +1,6 @@
 'use strict';
 
-function LandingCtrl(UserService) {
+function LandingCtrl(UserService, $location) {
   'ngInject';
 
   const vm = this;
@@ -10,9 +10,9 @@ function LandingCtrl(UserService) {
 
   vm.init = function () {
     //If user has session, route appropriately, else display sign-up / about page.
-    let currentUser = UserService.get();
-
-    vm.isLoggedIn = currentUser ? true : false;
+    if (!UserService.get()) {
+      $location.path('/login');
+    }
   };
 
   vm.init();

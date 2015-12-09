@@ -16,6 +16,8 @@ function UserService($q) {
     var promise = $q.defer();
 
     Parse.User.logIn(email, password).then( function(response){
+      console.log("TODO: error checking / response.");
+      console.log("TODO: cache user ID?");
       promise.resolve(response);
     }, function(response){
       promise.reject(response);
@@ -32,9 +34,12 @@ function UserService($q) {
       user = new Parse.User();
 
     user.set("username", email);
+    user.set("email", email);
     user.set("password", password);
 
     user.signUp(null).then( function(response){
+      console.log("TODO: error checking / response.");
+      console.log("TODO: cache user ID?");
       promise.resolve(response);
     }, function(response){
       promise.reject(response);

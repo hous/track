@@ -6,8 +6,9 @@ Uses https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate
 TODO
 - [X] basic gulp/angular setup
 - [X] parse integration
+- [ ] sign-up password match
 - [ ] bootstrap styles
-- [ ] view/login
+- [X] view/login
 - [ ] view/me
 - [ ] view/day
 - [ ] view/days (calendar?)

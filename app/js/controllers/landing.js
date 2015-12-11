@@ -8,14 +8,14 @@ function LandingCtrl(UserService, $location) {
   vm.title = 'Home Page';
   vm.user = {};
 
-  vm.init = function () {
+   var init = function () {
     //If user has session, route appropriately, else display sign-up / about page.
     if (!UserService.get()) {
       $location.path('/login');
     }
   };
 
-  vm.init();
+  init();
 }
 
 export default {

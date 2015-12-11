@@ -7,19 +7,19 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
   .state('Landing', {
     url: '/',
-    controller: 'LandingCtrl as page',
+    controller: 'LandingCtrl as vm',
     templateUrl: 'landing.html',
     title: 'Landing'
   })
   .state('Login', {
     url: '/login',
-    controller: 'LoginCtrl as page',
+    controller: 'LoginCtrl as vm',
     templateUrl: 'login.html',
     title: 'Login'
   })
   .state('Tracks', {
     url: '/tracks',
-    controller: 'TracksCtrl as page',
+    controller: 'TracksCtrl as vm',
     templateUrl: 'tracks.html',
     title: 'Tracks'
   });

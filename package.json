@@ -66,5 +66,8 @@
     "preprotractor": "npm install && webdriver-manager update",
     "protractor": "protractor test/protractor.conf.js"
   },
-  "name": "track"
+  "name": "track",
+  "dependencies": {
+    "angularparse": "^0.1.0"
+  }
 }

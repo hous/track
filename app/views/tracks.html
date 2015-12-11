@@ -1,2 +1,13 @@
-<h1 class="heading -large">{{ page.title }}</h1>
+<h1 class="heading -large">{{ vm.title }}</h1>
 
+<a href="#" ng-click="addExpanded = true">Add a new track</a>
+<form ng-show="addExpanded" ng-submit="vm.addTrack()">
+  <input type="text" ng-model="vm.newTrack.name" />
+  <select ng-model="vm.newTrack.type" ng-init="vm.newTrack.type=checkbox">
+    <option value="" ng-value="checkbox">Checkbox</option>
+    <option ng-value="counter">Counter</option>
+  </select>
+  <button type="submit">Add</button>
+</form>
+
+<a href="#" ng-click="vm.test()">Test</a>

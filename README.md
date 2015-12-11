@@ -25,5 +25,7 @@ TODO
 - [ ] api/me/passwordreset
 - [ ] api/me/export
 - [ ] SSL via https://letsencrypt.org/
+- [ ] Lock down Parse schema / read/write / ACLs
+
 
 

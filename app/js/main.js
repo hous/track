@@ -9,6 +9,7 @@ import './filters';
 import './controllers';
 import './services';
 import './directives';
+import './libraries/smart-table';
 
 // create and bootstrap application
 const requires = [
@@ -17,7 +18,8 @@ const requires = [
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
+  'smart-table'
 ];
 
 // mount on window for testing

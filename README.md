@@ -26,6 +26,8 @@ TODO
 - [ ] api/me/export
 - [ ] SSL via https://letsencrypt.org/
 - [ ] Lock down Parse schema / read/write / ACLs
+- [ ] GA
+- [ ] Single-day view for portrait, multi-day for landscape
 
 
 

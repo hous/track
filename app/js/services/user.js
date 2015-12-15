@@ -9,9 +9,6 @@ function UserService($q) {
     return Parse.User.current();
   };
 
-  /**
-   * Log in a user.
-   */
   service.logIn = function(email, password) {
     var promise = $q.defer();
 
@@ -26,9 +23,24 @@ function UserService($q) {
     return promise;
   };
 
-  /**
-   * Sign up a user.
-   */
+  service.logOut = function() {
+    // logOut returns 209 if session is invalid already, so we don't need to know if the request was successful.
+    Parse.User.logOut();
+  };
+
+  service.checkIfSessionIsValid= function() {
+    var promise = $q.defer();
+
+    Parse.Session.current().then( function(response){
+
+      promise.resolve(response);
+    }, function(response){
+      promise.reject(response);
+    });
+
+    return promise;
+  };
+
   service.signUp = function(email, password) {
     var promise = $q.defer(),
       user = new Parse.User();

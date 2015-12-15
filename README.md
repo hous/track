@@ -9,17 +9,19 @@ TODO
 - [ ] sign-up password match
 - [ ] bootstrap styles
 - [X] view/login
+- [X] view/logout
 - [ ] view/me
 - [ ] view/day
 - [ ] view/days (calendar?)
-- [ ] view/tracks
+- [X] view/tracks
 - [ ] view/track
-- [ ] api/login
+- [X] api/login
+- [X] api/logout
 - [ ] api/day/add
 - [ ] api/day/list
 - [ ] api/day/detail
-- [ ] api/track/add
-- [ ] api/track/list
+- [X] api/track/add
+- [X] api/track/list
 - [ ] api/track/delete
 - [ ] api/me/deregister
 - [ ] api/me/passwordreset
@@ -28,6 +30,4 @@ TODO
 - [ ] Lock down Parse schema / read/write / ACLs
 - [ ] GA
 - [ ] Single-day view for portrait, multi-day for landscape
-
-
-
+- [ ] Why does ng-cloak not work?

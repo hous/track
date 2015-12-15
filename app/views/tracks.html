@@ -1,16 +1,23 @@
 <div>
   <h1 class="heading -large">{{ vm.title }}</h1>
+  <div ng-show="!vm.trackData.tracks.length" class="ng-cloak" ng-cloak>
+    <h2>Get started!</h2>
+    <p>Add a "track" below to begin tracking your daily progress.
+      You can track things based on whether or not you did a certain activity today, or you can track them based on a number.
+      For example, If you'd like to get into the habit of stretching every day, add a "checkbox" track called "Stretch".
+      If you'd like to count how many alcoholic drinks you've had on a given day, add a "number" track called "Alcohol".</p>
+  </div>
 
-  <a href="#" ng-click="addExpanded = true">Add a new track</a>
-  <form ng-show="addExpanded" ng-submit="vm.addTrack()">
-    <input type="text" ng-model="vm.newTrack.name" />
-    <select ng-model="vm.newTrack.type" ng-init="vm.newTrack.type=vm.trackTypes[0]">
-      <option ng-repeat="type in vm.trackTypes" ng-value="type">{{type}}</option>
+  <a href="#" ng-click="vm.addExpanded = true">Add a new track</a>
+  <form ng-show="vm.addExpanded" ng-submit="vm.addTrack()">
+    <input type="text" ng-model="vm.trackData.newTrack.name" placeholder="Track Name" />
+    <select ng-model="vm.trackData.newTrack.type" ng-init="vm.trackData.newTrack.type=vm.trackData.trackTypes[0]">
+      <option ng-repeat="type in vm.trackData.trackTypes" ng-value="type">{{type}}</option>
     </select>
     <button type="submit">Add</button>
   </form>
 
-  <table st-table="vm.tracks" class="table table-striped">
+  <table class="table table-striped" ng-show="vm.trackData.tracks.length">
     <thead>
     <tr>
       <th>name</th>
@@ -18,7 +25,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="row in vm.tracks">
+    <tr ng-repeat="row in vm.trackData.tracks">
       <td>{{row.name}}</td>
       <td>{{row.type}}</td>
     </tr>

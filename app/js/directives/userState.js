@@ -30,6 +30,10 @@ function UserStateDirective(UserService, $rootScope) {
           });
       };
 
+      scope.logOut = function() {
+        $rootScope.$broadcast('log-out');
+      };
+
       scope.signUp = function() {
         console.log("SignUp");
         let result = UserService.signUp(scope.user.email, scope.user.password).promise

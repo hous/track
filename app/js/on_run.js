@@ -1,10 +1,33 @@
 'use strict';
 
-function OnRun($rootScope, AppSettings) {
+function OnRun($rootScope, $location, AppSettings, UserService) {
 
   // Load the Parse API
   console.log('Initializing Parse JS framework.');
+
   Parse.initialize(AppSettings.parse.appId, AppSettings.parse.JSKey);
+
+  // Check for Valid Session
+  UserService.checkIfSessionIsValid().promise.then( function(response){
+    console.log("Returning User.");
+  }, function(response){
+    // Invalid Session
+    if (response.code === 209) {
+      $rootScope.$broadcast('parse-invalid-session-error');
+    }
+  });
+
+  // Any time user session is invalid, log out user and send to login page.
+  $rootScope.$on('parse-invalid-session-error', (event) => {
+    UserService.logOut();
+    $location.path('/login');
+  });
+
+  // Log out event.
+  $rootScope.$on('log-out', (event) => {
+    UserService.logOut();
+    $location.path('/login');
+  });
 
   // change page title based on state
   $rootScope.$on('$stateChangeSuccess', (event, toState) => {
@@ -17,7 +40,6 @@ function OnRun($rootScope, AppSettings) {
 
     $rootScope.pageTitle += AppSettings.appTitle;
   });
-
 }
 
 export default OnRun;

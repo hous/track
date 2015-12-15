@@ -3,7 +3,7 @@ Habit Tracking App.
 
 Uses https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate
 
-TODO
+FEATURES
 - [X] basic gulp/angular setup
 - [X] parse integration
 - [ ] sign-up password match
@@ -22,12 +22,21 @@ TODO
 - [ ] api/day/detail
 - [X] api/track/add
 - [X] api/track/list
-- [ ] api/track/delete
+- [X] api/track/delete
 - [ ] api/me/deregister
+- [ ] api/me/confirm
 - [ ] api/me/passwordreset
 - [ ] api/me/export
-- [ ] SSL via https://letsencrypt.org/
 - [ ] Lock down Parse schema / read/write / ACLs
-- [ ] GA
+- [ ] 
+
+Nice to have
+- [ ] reorder tracks
+- [ ] day-of-week start / time-zone configuration
+
+TODO
+- [ ] SSL via https://letsencrypt.org/
 - [ ] Single-day view for portrait, multi-day for landscape
+
+BUGS
 - [ ] Why does ng-cloak not work?

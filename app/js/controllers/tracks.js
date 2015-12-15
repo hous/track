@@ -35,8 +35,9 @@ function TracksCtrl(UserService, $location, $scope) {
         // Do something with the returned Parse.Object values
         for (var i = 0; i < results.length; i++) {
           vm.trackData.tracks.push({
-            'name' : results[i].get('name'),
-            'type' : results[i].get('type')
+            'name'  : results[i].get('name'),
+            'type'  : results[i].get('type'),
+            'id'    : results[i].id
           });
           $scope.$apply();
         }
@@ -61,15 +62,38 @@ function TracksCtrl(UserService, $location, $scope) {
     track.save(null, {
       success: function(result) {
         // Execute any logic that should take place after the object is saved.
-        vm.trackData.tracks.unshift({ 'name' : vm.trackData.newTrack.name, 'type' : vm.trackData.newTrack.type });
+        console.log(result);
+        vm.trackData.tracks.unshift({ 'name' : vm.trackData.newTrack.name, 'type' : vm.trackData.newTrack.type, 'id' : result.id });
         vm.addExpanded = false;
         $scope.$apply();
         vm.trackData.newTrack.name = '';
       },
       error: function(result, error) {
-        // Execute any logic that should take place if the save fails.
-        // error is a Parse.Error with an error code and message.
         console.error('Failed to create new object, with error code: ' + error.message);
+      }
+    });
+  };
+
+  vm.deleteTrack = function(id) {
+    var Track = Parse.Object.extend("Track");
+    var track = new Track();
+    track.set("id", id);
+
+    track.destroy({
+      success: function(result) {
+        console.log(result);
+        var i = vm.trackData.tracks.length;
+        // loop backwards since we're deleting items from the array.
+        while ( i-- ) {
+          console.log(i, vm.trackData.tracks[i].id);
+          if (vm.trackData.tracks[i].id === id) {
+            vm.trackData.tracks.splice(i, 1);
+          }
+        }
+        $scope.$apply();
+      },
+      error: function(result, error) {
+        console.error('Failed to delete object, with error code: ' + error.message);
       }
     });
   };

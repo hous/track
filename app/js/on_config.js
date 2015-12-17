@@ -5,11 +5,17 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-  .state('Landing', {
+  .state('Tracks', {
     url: '/',
-    controller: 'LandingCtrl as vm',
-    templateUrl: 'landing.html',
-    title: 'Landing'
+    controller: 'TracksCtrl as vm',
+    templateUrl: 'tracks.html',
+    title: 'Tracks'
+  })
+  .state('Today', {
+    url: '/today',
+    controller: 'TodayCtrl as vm',
+    templateUrl: 'today.html',
+    title: 'Today'
   })
   .state('Login', {
     url: '/login',
@@ -17,11 +23,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     templateUrl: 'login.html',
     title: 'Login'
   })
-  .state('Tracks', {
-    url: '/tracks',
-    controller: 'TracksCtrl as vm',
-    templateUrl: 'tracks.html',
-    title: 'Tracks'
+  .state('Account', {
+    url: '/account',
+    controller: 'AccountCtrl as vm',
+    templateUrl: 'account.html',
+    title: 'Account'
   });
 
   $urlRouterProvider.otherwise('/');

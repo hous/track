@@ -1,9 +1,8 @@
 <div ng-show="isLoggedIn">
-  Logged in as {{ username }}. <a ng-click="logOut()">Log Out</a>.
+  <a href="/account">{{ username }}</a> | <a ng-click="logOut()">Log Out</a>
 </div>
 <div ng-show="!isLoggedIn">
   <div id="login-form">
-    <h3>Sign In / Sign Up</h3>
     <p class="error" ng-show="errorMessage">{{ errorMessage }}</p>
     <form name="login-signup" ng-submit="user.hasAccount ? logIn() : signUp()">
       <div>

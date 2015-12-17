@@ -27,7 +27,7 @@ FEATURES
 - [ ] api/me/confirm
 - [ ] api/me/passwordreset
 - [ ] api/me/export
-- [ ] Lock down Parse schema / read/write / ACLs
+- [ ] Lock down Parse schema / read/write / ACLs - currently any user can list any track - need to only allow user that created.
 - [ ] 
 
 Nice to have

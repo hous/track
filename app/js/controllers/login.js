@@ -12,11 +12,6 @@ function LoginCtrl(UserService, $rootScope, $location) {
 
   };
 
-  $rootScope.$on('user-logged-in', function(event, args) {
-    //TODO: route to previous place?
-    $location.path('/');
-  });
-
   vm.init();
 }
 

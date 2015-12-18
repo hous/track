@@ -3,26 +3,31 @@
 </div>
 <div ng-show="!isLoggedIn">
   <div id="login-form">
-    <p class="error" ng-show="errorMessage">{{ errorMessage }}</p>
+    <div class="alert alert-danger" role="alert" ng-show="errorMessage">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{ errorMessage }}
+    </div>
     <form name="login-signup" ng-submit="user.hasAccount ? logIn() : signUp()">
       <div>
         <h4>Email Address:</h4>
-        <input type="email" ng-model="user.email" placeholder="email address" required />
+        <input type="email" ng-model="user.email" placeholder="email address" required/>
       </div>
       <div>
         <h4>Do you have an account already?</h4>
         <ul>
           <li>
-            <input type="radio" name="hasAccount" ng-value="false" ng-model="user.hasAccount" />
+            <input type="radio" name="hasAccount" ng-value="false" ng-model="user.hasAccount"/>
             <span>No, I'm new.</span>
           </li>
           <li>
-            <input type="radio" name="hasAccount" ng-value="true" ng-model="user.hasAccount" />
+            <input type="radio" name="hasAccount" ng-value="true" ng-model="user.hasAccount"/>
             <span>Yes, I do.</span>
           </li>
           <li>
-            <input type="password" name="password" ng-model="user.password" placeholder="Password" required />
-            <input type="password" name="passwordConfirm" ng-model="user.passwordConfirm" ng-show="!user.hasAccount" match="user.password" placeholder="Confirm Password" />
+            <input type="password" name="password" ng-model="user.password" placeholder="Password" required/>
+            <input type="password" name="passwordConfirm" ng-model="user.passwordConfirm" ng-show="!user.hasAccount"
+                   match="user.password" placeholder="Confirm Password"/>
           </li>
         </ul>
       </div>

@@ -1,38 +1,52 @@
 <user-state-directive></user-state-directive>
-<div>
+
+<!-- Getting Started -->
+<div class="getting-started" ng-show="!vm.trackData.tracks.length" class="ng-cloak" ng-cloak>
   <h1 class="heading -large">{{ vm.title }}</h1>
-  <div ng-show="!vm.trackData.tracks.length" class="ng-cloak" ng-cloak>
-    <h2>Get started!</h2>
-    <p>Add a "track" below to begin tracking your daily progress.
-      You can track things based on whether or not you did a certain activity today, or you can track them based on a number.
-      For example, If you'd like to get into the habit of stretching every day, add a "checkbox" track called "Stretch".
-      If you'd like to count how many glasses of water you've had on a given day, add a "number" track called "Water".</p>
+
+  <h2>Get started!</h2>
+
+  <p>Add a "track" below to begin tracking your daily progress.
+    You can track things based on whether or not you did a certain activity today, or you can track them based on a
+    number.
+    For example, If you'd like to get into the habit of stretching every day, add a "checkbox" track called "Stretch".
+    If you'd like to count how many glasses of water you've had on a given day, add a "number" track called "Water".</p>
+</div>
+
+<!-- Today View -->
+<div class="today" ng-show="vm.trackData.tracks.length">
+  <h5>Today is <strong>{{ vm.today | date:'EEEE, MMM d'}}</strong></h5>
+
+  <!-- Add a Track -->
+  <div class="add-track">
+    <a href="#" ng-click="vm.addExpanded = true" ng-show="!vm.addExpanded"><span
+      class="glyphicon glyphicon-plus-sign"></span></a>
+    <a href="#" ng-click="vm.editMode = !vm.editMode" ng-class="vm.editMode ? active : inactive"><span
+      class="glyphicon glyphicon-edit"></span></a>
+
+    <form ng-show="vm.addExpanded" ng-submit="vm.addTrack()">
+      <input type="text" ng-model="vm.trackData.newTrack.name" placeholder="Track Name"/>
+
+      <select ng-model="vm.trackData.newTrack.type" ng-init="vm.trackData.newTrack.type=vm.trackData.trackTypes[0]" class="form-control">
+        <option ng-repeat="type in vm.trackData.trackTypes" ng-value="type">{{type}}</option>
+      </select>
+
+      <button type="submit">Add</button>
+    </form>
   </div>
 
-  <a href="#" ng-click="vm.addExpanded = true" ng-show="!vm.addExpanded"><span class="glyphicon glyphicon-plus-sign"></span>  Add a new track</a>
-  <form ng-show="vm.addExpanded" ng-submit="vm.addTrack()">
-    <input type="text" ng-model="vm.trackData.newTrack.name" placeholder="Track Name" />
-    <select ng-model="vm.trackData.newTrack.type" ng-init="vm.trackData.newTrack.type=vm.trackData.trackTypes[0]">
-      <option ng-repeat="type in vm.trackData.trackTypes" ng-value="type">{{type}}</option>
-    </select>
-    <button type="submit">Add</button>
-  </form>
-
-  <table class="table table-striped" ng-show="vm.trackData.tracks.length">
-    <thead>
-    <tr>
-      <th>Track Name</th>
-      <th>Track Type</th>
-      <th>Trash It</th>
-    </tr>
-    </thead>
+  <table class="table table-striped">
     <tbody>
     <tr ng-repeat="row in vm.trackData.tracks">
       <td>{{row.name}}</td>
-      <td ng-if="row.type == 'number'">Number</td>
-      <td ng-if="row.type == 'checkbox'">Checkbox</td>
-      <td><span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.deleteTrack(row.id)"></span></td>
+      <td ng-if="row.type == 'number'"><input type="number"/></td>
+      <td ng-if="row.type == 'checkbox'"><input type="checkbox"/></td>
+      <td ng-if="vm.editMode"><span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.deleteTrack(row.id)"></span></td>
     </tr>
     </tbody>
   </table>
+
+  <button class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-cloud-upload"></span> Save Your Day
+  </button>
 </div>

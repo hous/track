@@ -11,12 +11,6 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     templateUrl: 'tracks.html',
     title: 'Tracks'
   })
-  .state('Today', {
-    url: '/today',
-    controller: 'TodayCtrl as vm',
-    templateUrl: 'today.html',
-    title: 'Today'
-  })
   .state('Login', {
     url: '/login',
     controller: 'LoginCtrl as vm',

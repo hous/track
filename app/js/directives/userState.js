@@ -21,7 +21,7 @@ function UserStateDirective(UserService, $rootScope) {
           .then(function (response) {
             console.log(response);
             scope.errorMessage = null;
-            $rootScope.$broadcast('user-logged-in');
+            $rootScope.$broadcast('log-in');
             refreshUser();
           })
           .catch(function (error) {
@@ -40,7 +40,7 @@ function UserStateDirective(UserService, $rootScope) {
           .then(function (response) {
             console.log(response);
             scope.errorMessage = null;
-            $rootScope.$broadcast('user-logged-in');
+            $rootScope.$broadcast('log-in');
             refreshUser();
           })
           .catch(function (error) {

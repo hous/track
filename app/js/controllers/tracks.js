@@ -15,6 +15,8 @@ function TracksCtrl(UserService, TrackService, $location, $scope) {
   console.log($scope);
   console.log(vm);
 
+  vm.today = new Date();
+
   vm.trackData = {
     tracks : [],
     trackTypes : ['checkbox', 'number'],

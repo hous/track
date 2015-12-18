@@ -10,8 +10,6 @@ function TrackService($q, UserService) {
       Track = Parse.Object.extend("Track"),
       query = new Parse.Query(Track);
 
-    // Should this be in user service? Should there be a Parse service?
-    query.equalTo("user", Parse.User.current());
     query.descending("createdAt");
     query.find({
       success: function(response) {

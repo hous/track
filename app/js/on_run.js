@@ -29,6 +29,12 @@ function OnRun($rootScope, $location, AppSettings, UserService) {
     $location.path('/login');
   });
 
+  // Log in event.
+  $rootScope.$on('log-in', function(event, args) {
+    //TODO: route to previous place?
+    $location.path('/');
+  });
+
   // change page title based on state
   $rootScope.$on('$stateChangeSuccess', (event, toState) => {
     $rootScope.pageTitle = '';

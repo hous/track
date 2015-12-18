@@ -19,6 +19,7 @@ FEATURES
 - [X] api/logout
 - [ ] api/day/add
 - [ ] api/day/list
+- [ ] Datepicker?
 - [ ] api/day/detail
 - [X] api/track/add
 - [X] api/track/list
@@ -28,6 +29,7 @@ FEATURES
 - [ ] api/me/passwordreset
 - [ ] api/me/export
 - [ ] Lock down Parse schema / read/write / ACLs - currently any user can list any track - need to only allow user that created.
+- [ ] Disable client class creation / Parse
 - [ ] 
 
 Nice to have

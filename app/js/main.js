@@ -4,22 +4,22 @@ import angular from 'angular';
 
 // angular modules
 import 'angular-ui-router';
+import './libraries/ui-bootstrap-tpls-0.14.3.min.js';
 import './templates';
 import './filters';
 import './controllers';
 import './services';
 import './directives';
-import './libraries/smart-table';
 
 // create and bootstrap application
 const requires = [
   'ui.router',
+  'ui.bootstrap',
   'templates',
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives',
-  'smart-table'
+  'app.directives'
 ];
 
 // mount on window for testing

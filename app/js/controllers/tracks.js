@@ -62,6 +62,11 @@ function TracksCtrl(UserService, TrackService, $location, $scope) {
       });
   };
 
+  vm.cancelAdd = function() {
+    vm.trackData.newTrack.name = '';
+    vm.addExpanded = false;
+  };
+
   vm.deleteTrack = function(id) {
     console.log("Deleting Track with ID", id);
 

@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "track-api"
+    },
+    "track-api": {
+      "applicationId": "zdeWlcUlCphIlRPKQaMHzWJbjSa1OHB63DcrMpx4"
+    }
+  }
+}

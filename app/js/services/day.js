@@ -28,6 +28,31 @@ function DayService($q) {
     return promise;
   };
 
+  service.get = function(date) {
+    var promise = $q.defer(),
+      Day = Parse.Object.extend("Day"),
+      query = new Parse.Query(Day);
+
+    query.equalTo("date", date + 'sdf');
+
+    query.find({
+      success: function(response) {
+        // If the day has been logged already, return the map of track id/values. Otherwise return an empty map.
+        if ( response.length ) {
+          promise.resolve(response[0].get('tracks'));
+        } else {
+          promise.resolve({});
+        }
+      },
+      error: function(result, error) {
+        console.error("Error: " + error.code + " " + error.message);
+        promise.reject(error);
+      }
+    });
+
+    return promise;
+  };
+
   return service;
 }
 

@@ -16,6 +16,7 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
   console.log(vm);
 
   vm.today = new Date();
+  vm.todayString = $filter('date')(vm.today, 'yyyy-MM-dd');
 
   vm.trackData = {
     tracks : [],
@@ -26,7 +27,7 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
     }
   };
 
-  vm.getTracks = function() {
+  vm.getTracks = function(cb) {
     console.log("Getting all Tracks");
 
     TrackService.getAll().promise
@@ -39,6 +40,7 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
             'id'    : response[i].id
           });
         }
+        if (cb) { cb(); }
       })
       .catch(function (error) {
         console.error("Error: " + error.code + " " + error.message);
@@ -88,10 +90,9 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
   };
 
   vm.saveDay = function() {
-    console.log(vm);
     var day = {
       tracks : vm.trackData.trackValues,
-      date : $filter('date')(vm.today, 'yyyy-MM-dd')
+      date : vm.todayString
     }
     DayService.save(day).promise
       .then(function (result) {
@@ -103,7 +104,21 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
       });
   };
 
-  vm.getTracks();
+  vm.getToday = function() {
+    var date = vm.todayString;
+
+    DayService.get(date).promise
+      .then(function (result) {
+        console.log(result);
+        //TODO: fill out track values
+      })
+      .catch(function (error){
+        console.log(error);
+        console.error('Failed to get the day, with error code: ' + error.message);
+      });
+  };
+
+  vm.getTracks(vm.getToday);
 
 }
 

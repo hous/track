@@ -1,6 +1,6 @@
 'use strict';
 
-function TracksCtrl(UserService, TrackService, $location, $scope) {
+function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $scope) {
   'ngInject';
 
   // ViewModel
@@ -84,6 +84,22 @@ function TracksCtrl(UserService, TrackService, $location, $scope) {
       .catch(function (error) {
         console.log(error);
         console.error('Failed to delete object, with error code: ' + error.message);
+      });
+  };
+
+  vm.saveDay = function() {
+    console.log(vm);
+    var day = {
+      tracks : vm.trackData.trackValues,
+      date : $filter('date')(vm.today, 'yyyy-MM-dd')
+    }
+    DayService.save(day).promise
+      .then(function (result) {
+        console.log(result);
+      })
+      .catch(function (error){
+        console.log(error);
+        console.error('Failed to save day, with error code: ' + error.message);
       });
   };
 

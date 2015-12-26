@@ -36,18 +36,20 @@
     </form>
   </div>
 
-  <table class="table table-striped">
-    <tbody>
-    <tr ng-repeat="row in vm.trackData.tracks">
-      <td>{{row.name}}</td>
-      <td ng-if="row.type == 'number'"><input type="number"/></td>
-      <td ng-if="row.type == 'checkbox'"><input type="checkbox"/></td>
-      <td ng-if="vm.editMode"><span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.deleteTrack(row.id)"></span></td>
-    </tr>
-    </tbody>
-  </table>
+  <form ng-submit="vm.saveDay()">
+    <table class="table table-striped">
+      <tbody>
+      <tr ng-repeat="row in vm.trackData.tracks">
+        <td>{{row.name}}</td>
+        <td ng-if="row.type == 'number'"><input type="number" ng-model="vm.trackData.trackValues[row.id]"/></td>
+        <td ng-if="row.type == 'checkbox'"><input type="checkbox" ng-model="vm.trackData.trackValues[row.id]"/></td>
+        <td ng-if="vm.editMode"><span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.deleteTrack(row.id)"></span></td>
+      </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-default btn-lg" type="submit" ng-disabled="vm.editMode || !vm.trackData.trackValues">
+      <span class="glyphicon glyphicon-cloud-upload"></span> Save Your Day
+    </button>
+  </form>
 
-  <button class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-cloud-upload"></span> Save Your Day
-  </button>
 </div>

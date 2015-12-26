@@ -1,6 +1,6 @@
 'use strict';
 
-function TrackService($q, UserService) {
+function TrackService($q) {
   'ngInject';
 
   var service = {};

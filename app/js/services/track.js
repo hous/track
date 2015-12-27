@@ -13,7 +13,6 @@ function TrackService($q) {
     query.descending("createdAt");
     query.find({
       success: function(response) {
-        console.log(response);
         var tracks = [];
         for (var i = 0; i < response.length; i++) {
           tracks.push({

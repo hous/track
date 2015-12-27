@@ -33,7 +33,7 @@ function DayService($q) {
       Day = Parse.Object.extend("Day"),
       query = new Parse.Query(Day);
 
-    query.equalTo("date", date + 'sdf');
+    query.equalTo("date", date);
 
     query.find({
       success: function(response) {

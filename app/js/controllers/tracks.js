@@ -12,15 +12,13 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
 
   vm.title = 'Your Daily Tracks.';
 
-  console.log($scope);
-  console.log(vm);
-
   vm.today = new Date();
   vm.todayString = $filter('date')(vm.today, 'yyyy-MM-dd');
 
   vm.trackData = {
     tracks : [],
     trackTypes : ['checkbox', 'number'],
+    trackValues : {},
     newTrack : {
       name : '',
       type : 'checkbox'
@@ -109,8 +107,12 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
 
     DayService.get(date).promise
       .then(function (result) {
+        console.log(vm);
+        console.log(vm.trackData.trackValues);
         console.log(result);
-        //TODO: fill out track values
+        for (var i in result) {
+          vm.trackData.trackValues[i] = result[i];
+        }
       })
       .catch(function (error){
         console.log(error);

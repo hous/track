@@ -12,3 +12,7 @@ body {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+.m-b-1 {
+  margin-bottom: $half-space !important;
+}

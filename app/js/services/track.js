@@ -5,12 +5,14 @@ function TrackService($q) {
 
   var service = {};
 
-  service.getAll = function() {
+  service.getAllActive = function() {
     var promise = $q.defer(),
       Track = Parse.Object.extend("Track"),
       query = new Parse.Query(Track);
 
+    query.equalTo("active", true);
     query.descending("createdAt");
+
     query.find({
       success: function(response) {
         var tracks = [];
@@ -40,6 +42,7 @@ function TrackService($q) {
     track.set("user", Parse.User.current());
     track.set("name", newTrack.name);
     track.set("type", newTrack.type);
+    track.set("active", true);
 
     track.save(null, {
       success: function(result) {
@@ -60,8 +63,9 @@ function TrackService($q) {
       track = new Track();
 
     track.set("id", id);
+    track.set("active", false);
 
-    track.destroy({
+    track.save(null, {
       success: function(result) {
         promise.resolve(result);
       },

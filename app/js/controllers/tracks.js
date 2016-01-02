@@ -28,7 +28,7 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
   vm.getTracks = function(cb) {
     console.log("Getting all Tracks");
 
-    TrackService.getAll().promise
+    TrackService.getAllActive().promise
       .then(function (response) {
         console.log(response);
         for (var i = 0; i < response.length; i++) {

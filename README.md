@@ -43,6 +43,7 @@ Nice to have
 TODO
 - [ ] SSL via https://letsencrypt.org/
 - [ ] Single-day view for portrait, multi-day for landscape
+- [ ] Migrate to AWS-hosted Parse or rebuild backend
 
 BUGS
 - [ ] Why does ng-cloak not work?

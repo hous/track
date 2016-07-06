@@ -4,6 +4,7 @@ import angular from 'angular';
 
 // angular modules
 import 'angular-ui-router';
+import 'restangular';
 import './libraries/ui-bootstrap-tpls-0.14.3.min.js';
 import './templates';
 import './filters';
@@ -15,6 +16,7 @@ import './directives';
 const requires = [
   'ui.router',
   'ui.bootstrap',
+  'restangular',
   'templates',
   'app.filters',
   'app.controllers',

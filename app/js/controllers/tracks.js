@@ -43,6 +43,15 @@ function TracksCtrl(UserService, TrackService, DayService, $filter, $location, $
       .catch(function (error) {
         console.error("Error: " + error.code + " " + error.message);
       });
+
+    TrackService.getAllActiveViaAPI().promise
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error("Error: " + error.code + " " + error.message);
+      });
+
   };
 
   vm.addTrack = function() {

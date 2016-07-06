@@ -1,6 +1,6 @@
 'use strict';
 
-function TrackService($q) {
+function TrackService($q, Restangular) {
   'ngInject';
 
   var service = {};
@@ -28,6 +28,36 @@ function TrackService($q) {
       error: function(result, error) {
         console.error("Error: " + error.code + " " + error.message);
         promise.reject(error);
+      }
+    });
+
+    return promise;
+  };
+
+  service.getAllActiveViaAPI = function() {
+    var promise = $q.defer();
+    Restangular.all('tracks');
+    
+
+    return promise;
+  };
+
+  service.addViaAPI = function(newTrack) {
+    var promise = $q.defer(),
+      track = {
+        user_id : 0,
+        name : newTrack.name,
+        type : newTrack.type,
+        active : true
+      };
+
+    track.save(null, {
+      success: function(result) {
+        promise.resolve(result);
+      },
+      error: function(result, error) {
+        console.error('Failed to create new object, with error code: ' + error.message);
+        promise.resolve(error);
       }
     });
 
